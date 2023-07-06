@@ -1,0 +1,1 @@
+SELECT student.fname FROM student INNER JOIN class_subject on student.classid = class_subject.classid Group BY student.id;
