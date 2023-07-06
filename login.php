@@ -47,6 +47,7 @@ if(isset($_SESSION['user'])){
         </div>
         <div class="mt-3">
             <input type="submit" placeholder="123@123" value="Log In" id="u" class="btn btn-danger">
+            <a href="file/forget.php"><button type="button" class="btn mx-2 btn-success">Forget PAssword</button></a>
         </div>
         <div class="text-center text-danger">
             <?php

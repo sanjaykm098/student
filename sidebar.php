@@ -138,11 +138,11 @@ if (!isset($_SESSION['user'])) {
                                 <span class="ml-2">Student By Class</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="">
                                 <span class="ml-2">Attendance</span>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </nav>

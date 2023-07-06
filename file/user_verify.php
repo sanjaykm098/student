@@ -14,9 +14,9 @@ if($id == "No Found"){
 }
 else{
     $id = $id[0]['id'];
-    $num1 = rand(100000,999999);
+    $num1 = rand(1,9999999999);
     $token = "SGD_{$num1}";
-    echo "<a href='../acc/reset.php?token={$token}'>Click To Here To Reset The Password Now.</a>";
+    echo "<a class='btn btn-success' href='../acc/reset.php?token={$token}'>Click To Here To Reset The Password Now.</a>";
     $obj->reser_link($token,$type,$id);
 }
 ?>

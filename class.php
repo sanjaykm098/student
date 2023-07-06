@@ -12,7 +12,7 @@ class DB
     public function __construct()
     {
         if (!isset($this->db)) {
-            try {
+            try { 
                 $conn = new PDO("mysql:host=" . $this->dbhost . ";dbname=" . $this->dbname, $this->dbuser, $this->dbpass);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $this->db = $conn;
@@ -142,5 +142,27 @@ class student extends DB{
         $sql = "INSERT INTO `reset_link`(`token`, `type`, `user_id`) VALUES ('$token','$type','$id')";
         $query = $this->db->prepare($sql);
         $query->execute();
+    }
+    function verify_token($token){
+        $sql = "SELECT * from reset_link where `token` = '$token'";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        if ($query->rowCount() == 0) {
+            return $data = "error";
+        } else {
+            $data = $query->fetchall(PDO::FETCH_ASSOC);
+            return $data;
+        }
+    }
+    function update_pass($type,$id,$pass){
+        try{
+        $sql = "UPDATE `$type` SET `cpass`='$pass' WHERE `id` = '$id'";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        return "Update Done";
+        }
+        catch(PDOException $e){
+            return "error";
+        }
     }
 }

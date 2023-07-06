@@ -25,7 +25,7 @@ $obj = new student();
                     }
                     echo "
                     <script type='text/javascript'> 
-                        window.location.href='student_edit.php?id{$id}' 
+                        window.location.href='student_edit.php?id={$id}' 
                     </script>
                 ";
                 }
@@ -110,18 +110,19 @@ $obj = new student();
             <select multiple <?php if (isset($filled)) {
                                     print($filled);
                                 } ?> name="subject[]" id="" class="form-control">
-                <option selected value="">
+                
+                <option value="11">Computer</option>
+                <option value="9">Home_Science</option>
+                <option selected value="10">Physical</option>
+            </select>
+        </div>
+        <h6 class="mt-5 text-center text-danger" value="">
                     <?php if (isset($filled)) {
                         print($mess);
                     } else {
                         echo "Choose One of the Subject";
                     } ?>
-                </option>
-                <option value="11">Computer</option>
-                <option value="9">Home_Science</option>
-                <option value="10">Physical</option>
-            </select>
-        </div>
+                </h6>
     </div>
     <div class="mt-4 text-center">
         <input type="submit" class="btn btn-primary" value="Update">

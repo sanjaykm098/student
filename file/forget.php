@@ -1,6 +1,10 @@
 <?php
-require '../class.php'
-?>
+require '../class.php';
+session_start();
+if(isset($_SESSION['user'])){
+    session_destroy();
+  }
+  ?>
 
 <head>
     <meta charset="UTF-8">

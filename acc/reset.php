@@ -1,13 +1,6 @@
 <?php
 require '../class.php';
 $obj = new student();
-$token = $_GET['token'];
-if($token == ""){
-    die('Sorry to say that Something went Wrong');
-}else{
-    /// Pending to add verify token and reset the password....
-    echo "Pending";
-}
 ?>
 
 <head>
@@ -89,6 +82,58 @@ if($token == ""){
         }
     </style>
 </head>
+
 <body>
-    
+    <div class="container pt-5">
+        <div class="box p-3 mt-5 rounded bg-light">
+            <h2>Enter New Password:</h2>
+            <div class="mt-4">
+                <form action="" method="post">
+                    <div class="mt-3">
+                        <label for="pass">Enter Password</label>
+                        <input type="password" name="cpass" id="" class="form-control">
+                    </div>
+                    <div class="mt-3">
+                        <button class="btn btn-success" type="submit">Reset Now</button>
+                    </div>
+                </form>
+                <?php
+                $token = $_GET['token'];
+                if ($token == "") {
+                    die('Sorry to say that Something went Wrong');
+                } else {
+                    /// Pending to add verify token and reset the password....
+                    // echo "Pending";
+                    $check = $obj->verify_token($token);
+                    if($check == "error"){
+                        header('location:error.php');
+                    }
+                    $id = $check[0]['user_id'];
+                    $type = $check[0]['type'];
+                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        $pass = $_POST['cpass'];
+                        // echo $pass;
+                        $pass = password_hash($pass, PASSWORD_DEFAULT);
+                        
+                        if($pass == ""){
+                            echo "Please Fill The password";
+                        }
+                        else{
+                             $error = $obj->update_pass($type,$id,$pass);
+
+                             echo $error;
+                            if($error == "error"){
+                                header('location:error.php');
+                            }
+                            else{
+                                echo $error;
+                                header('location:../login.php');
+                            }
+                        }
+                    }
+                }
+                ?>
+            </div>
+        </div>
+    </div>
 </body>
