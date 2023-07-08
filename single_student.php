@@ -2,6 +2,17 @@
 require 'class.php';
 require 'sidebar.php';
 $obj = new student();
+if($_SESSION['user_type']=='teacher'){
+    // echo '';
+}
+else{
+    // header('location:acc_den.php');
+    echo "
+                    <script type='text/javascript'> 
+                        window.location.href='acc_den.php' 
+                    </script>
+                ";
+}
 ?>
 <span>
     <?php
